@@ -1,4 +1,4 @@
-🧠 Idea base: TaskFlow (o como quieras llamarlo)
+🧠 Idea base: TaskFlow 
 
 Un sistema donde los usuarios pueden crear proyectos, y dentro de cada proyecto crear tareas, asignarlas, cambiar estados, poner fechas límite y añadir comentarios.
 
