@@ -19,9 +19,9 @@ namespace Domain.Entities
         public ProjectEntity(string Title, string Description, Guid? OwnerId)
         {
             Title.ThrowIfNullOrEmpty();
-            Title.ThrowIfLimitExceeded(20);
+            Title.ThrowIfLimitMax(20);
 
-            Description.ThrowIfLimitExceeded(1500);
+            Description.ThrowIfLimitMax(1500);
 
             OwnerId.ThrowIfNullOrEmpty();
 
@@ -35,14 +35,14 @@ namespace Domain.Entities
             if (Title != null)
             {
                 Title.ThrowIfNullOrEmpty();
-                Title.ThrowIfLimitExceeded(TitleLimit);
+                Title.ThrowIfLimitMax(TitleLimit);
                 this.Title = Title;
             }
 
             if (Description != null)
             {
                 Description.ThrowIfNullOrEmpty();
-                Description.ThrowIfLimitExceeded(DescriptionLimit);
+                Description.ThrowIfLimitMax(DescriptionLimit);
                 this.Description = Description;
             }
         }

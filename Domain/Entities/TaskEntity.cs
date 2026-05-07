@@ -30,9 +30,9 @@ namespace Domain.Entities
         public TaskEntity(string Title, string Description, Guid? ProjectId, TaskPriority Priority, DateTime? Expiration)
         {
             Title.ThrowIfNullOrEmpty();
-            Title.ThrowIfLimitExceeded(TitleLimit);
+            Title.ThrowIfLimitMax(TitleLimit);
 
-            Description.ThrowIfLimitExceeded(DescriptionLimit);
+            Description.ThrowIfLimitMax(DescriptionLimit);
 
             Priority.ThrowIfUndefined();
 
@@ -58,13 +58,13 @@ namespace Domain.Entities
             if (Title != null)
             {
                 Title.ThrowIfNullOrEmpty();
-                Title.ThrowIfLimitExceeded(TitleLimit);
+                Title.ThrowIfLimitMax(TitleLimit);
                 this.Title = Title;
             }
 
             if(Description != null)
             {
-                Description.ThrowIfLimitExceeded(DescriptionLimit);
+                Description.ThrowIfLimitMax(DescriptionLimit);
                 this.Description = Description;
             }
 

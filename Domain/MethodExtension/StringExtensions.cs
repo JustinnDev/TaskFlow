@@ -8,11 +8,24 @@ namespace Domain.MethodExtension
     {
         public static bool HasValue([NotNullWhen(true)] this string str) => !string.IsNullOrWhiteSpace(str); 
 
-        public static void ThrowIfNullOrEmpty([NotNull]this string str, [CallerArgumentExpression(nameof(str))] string name = "")
+        public static void ThrowIfNullOrEmpty([NotNull]this string str, [CallerArgumentExpression(nameof(str))] string paramName = "")
         {
             if(!str.HasValue())
             {
-                throw new ArgumentException($"The {name} is null or empty");
+                throw new ArgumentException($"The {paramName} is null or empty");
+            }
+        }
+
+        public static void ThrowIfNullValueOrEmpty([NotNull] this string? str, [CallerArgumentExpression(nameof(str))] string? paramName = "")
+        {
+            if(str == null)
+            {
+                throw new ArgumentException($"The {paramName} is null");
+            }
+
+            if (!str.HasValue())
+            {
+                throw new ArgumentException($"The {paramName} is empty");
             }
         }
 
@@ -36,11 +49,27 @@ namespace Domain.MethodExtension
             }
         }
 
-        public static void ThrowIfLimitExceeded(this string str, short limit, [CallerArgumentExpression(nameof(str))] string paramName = "")
+        public static void ThrowIfLimitMax(this string str, short max, [CallerArgumentExpression(nameof(str))] string paramName = "")
         {
-            if(str.Trim().Count() > limit)
+            if(str.Trim().Count() > max)
             {
-                throw new ArgumentException($"{paramName} exceeds the limit, max characters : {limit}");
+                throw new ArgumentException($"{paramName} exceeds the limit, max characters : {max}");
+            }
+        }
+
+        public static void ThrowIfLimitMin(this string str, short min, [CallerArgumentExpression(nameof(str))]string paramName = "") 
+        { 
+            if(str.Trim().Count() < min)
+            {
+                throw new ArgumentException($"{paramName} under the limit, min characters : {min}");
+            }
+        }
+
+        public static void ThrowIfNotExactLength(this string str, short length, [CallerArgumentExpression(nameof(str))]string paramName = "")
+        {
+            if(str.Trim().Count() != length)
+            {
+                throw new ArgumentException($"{paramName} needs exactly {length} characters");
             }
         }
 
