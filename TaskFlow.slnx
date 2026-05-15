@@ -2,4 +2,5 @@
   <Project Path="Application/Application.csproj" Id="ed708f36-f03c-48f2-9e98-fbe08a18e4ef" />
   <Project Path="ConsoleApp/ConsoleApp.csproj" />
   <Project Path="Domain/Domain.csproj" />
+  <Project Path="Infrastructure/Infrastructure.csproj" Id="68dcff54-e0f1-4368-b45a-2def75c20075" />
 </Solution>
